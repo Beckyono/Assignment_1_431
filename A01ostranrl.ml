@@ -58,13 +58,11 @@ let rec counter list=
   match list with
   | [] -> (0, 0)  (*if the list is empty, return an empty value*)
   | h::t -> 
-    let (numzeros, numones) = counter t in
-    if h = 0 then      (*if the head is 0, increment numzeros*)
-      (numzeros+1, numones)
-    else if h = 1 then (*if the head is 1, increment numones*)
-      (numzeros, numones+1)
-    else               (*otherwise, do nothing*)
-      (numzeros, numones);;
+    let (numzeros, numones) = counter list in
+    match h with
+    | 0 -> (numzeros+1, numones)  (*if the head is 0, increment numzeros*)
+    | 1 -> (numzeros, numones+1)  (*if the head is 1, increment numones*)
+    | _ -> (numzeros, numones);;  (*otherwise, do nothing*)
 
 (*Testing*)
 let x = [1; 5; 1; 6];;
